@@ -1,15 +1,14 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import "../src/Card.css";
 export function Cards(props) {
   console.log(props);
   return (
-    <div className="card" style={{ width: "18rem" }}>
-      <img src={props.data.image} class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">{props.data.name}</h5>
-        <p class="card-text">{props.data.price}</p>
-        <a href="#" class="btn btn-primary">
-          Go somewhere
-        </a>
+    <div className="parent">
+      <div class="card" style={{ width: "18rem" }}>
+        <img class="card-img-top" src={props.data.image} alt=" " />
+        <div class="card-body">
+          <h5 class="card-text">{props.data.name}</h5>
+          <p class="card-text">{props.data.price}</p>
+        </div>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ function Login() {
         type="password"
         name=""
       />
-      <button onChange={login} className="btn btn-primary" id="login">
+      <button className="btn btn-primary" onClick={login} id="login">
         Login
       </button>
     </div>

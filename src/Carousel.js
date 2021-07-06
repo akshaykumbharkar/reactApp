@@ -1,6 +1,6 @@
-const carousel1 = "carousel1.jpg";
-const carousel2 = "carousel2.jpg";
-const carousel3 = "carousel3.jpg";
+const carousel1 = "carousel2.png";
+const carousel2 = "carousel1.png";
+const carousel3 = "carousel2.png";
 
 export function Carosel() {
   let caroselStyle = { height: "30em" };

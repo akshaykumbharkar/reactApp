@@ -3,6 +3,7 @@ import { Carosel } from "./Carousel";
 import { Cards } from "./Cards";
 import Login from "./login";
 import "./App.css";
+import Signup from "./Signup";
 
 function App() {
   let cakes = [
@@ -24,8 +25,11 @@ function App() {
       <Navbar />
       <Carosel />
       <div className="row">
+        <Signup />
         <Login />
-        <Cards data={cakes[0]} />
+        {cakes.map((cake) => {
+          return <Cards data={cake} />;
+        })}
         {/* <Cards data={cake2} /> */}
         {/* <div class="col-sm">
           <Cards />
