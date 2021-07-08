@@ -1,7 +1,11 @@
+import { useState } from "react";
+
 function Login() {
+  const [errorMessage, setErrorMessage] = useState("");
   let user = {};
   var login = function () {
     console.log("user has entered", user);
+    setErrorMessage("Login Failure");
   };
   var handleEmail = function (e) {
     user.email = e.target.value;
@@ -28,6 +32,7 @@ function Login() {
       <button className="btn btn-primary" onClick={login} id="login">
         Login
       </button>
+      {errorMessage}
     </div>
   );
 }
