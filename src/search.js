@@ -1,8 +1,26 @@
 import cakesdata from "./cakesdata";
 import { useState, useEffect } from "react";
 import { Cards } from "./Cards";
+import axios from "axios";
+import API from "./Api";
 
 function Search() {
+  // let getCakes = async () => {
+  //   let apiUrl = API.allCakes;
+  //   axios({
+  //     url: apiUrl,
+  //     method: "get",
+  //   }).then(
+  //     (response) => {
+  //       return response.data;
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //       return [];
+  //     }
+  //   );
+  // };
+  // const cakesdata = await getCakes();
   const [search, setSearchValue] = useState("");
   const [cakeData, setCakeData] = useState(cakesdata);
 

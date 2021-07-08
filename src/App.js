@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { Carosel } from "./Carousel";
 import Login from "./login";
 import Search from "./search";
+import Signup from "./Signup";
 // import Cakedata from "./cakesdata";
 // import { Cards } from "./Cards";
 
@@ -19,6 +20,7 @@ function App() {
       />
       <Navbar />
       <Carosel />
+      <Signup />
       <Login />
       <Search />
     </div>
