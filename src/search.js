@@ -1,28 +1,29 @@
-import cakesdata from "./cakesdata";
+// import cakesdata from "./cakesdata";
 import { useState, useEffect } from "react";
 import { Cards } from "./Cards";
 import axios from "axios";
 import API from "./Api";
+let cakesdata = [];
 
 function Search() {
-  // let getCakes = async () => {
-  //   let apiUrl = API.allCakes;
-  //   axios({
-  //     url: apiUrl,
-  //     method: "get",
-  //   }).then(
-  //     (response) => {
-  //       return response.data;
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //       return [];
-  //     }
-  //   );
-  // };
-  // const cakesdata = await getCakes();
   const [search, setSearchValue] = useState("");
   const [cakeData, setCakeData] = useState(cakesdata);
+  useEffect(() => {
+    const fetchData = async () => {
+      axios
+        .get(API.allCakes)
+        .then(function (response) {
+          console.log(response.data.data);
+          setCakeData(response.data.data);
+          cakesdata = response.data.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+
+    fetchData();
+  }, []);
 
   let searchFunction = (event) => {
     setSearchValue(event.target.value);
@@ -40,7 +41,6 @@ function Search() {
     }
     setCakeData(cakeArray);
   };
-  useEffect(() => {}, []);
 
   return (
     <div className="container-fluid mt-3">
