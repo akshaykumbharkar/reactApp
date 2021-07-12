@@ -1,86 +1,61 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-function Signup() {
-  var [enteredText, setEnteredText] = useState();
+export function Signup() {
+  const [user, setUser] = useState({});
 
-  let register = {};
-  var registerName = function (e) {
-    register.name = e.target.value;
-  };
-  var registerPassword = function (e) {
-    register.password = e.target.value;
-  };
-  var registerEmail = function (e) {
-    register.email = e.target.value;
+  const handleEmailChange = function (e) {
+    setUser({ ...user, email: e.target.value });
   };
 
-  var registerData = function (e) {
-    if (
-      register.email === undefined ||
-      register.password === undefined ||
-      register.name === undefined
-    ) {
-      alert("please provide details");
-    } else {
-      axios
-        .post(`https://apifromashu.herokuapp.com/api/register`, register)
-        .then((res) => {
-          console.log(res);
-          console.log(res.data);
-          setEnteredText("");
-        });
-    }
+  const handlePasswordChange = function (e) {
+    setUser({ ...user, password: e.target.value });
+  };
+
+  const handleNameChange = function (e) {
+    setUser({ ...user, name: e.target.value });
+  };
+
+  var handleSignup = function () {
+    console.log("users>>>>>>>>>>>>>>>", user);
+    axios
+      .post("https://apifromashu.herokuapp.com/api/register", user)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
-    <div class="col-md-8 offset-md-4">
-      <form className="w-50">
-        <h1 className="alignCenter">Sign Up Page</h1>
-        <label className="mb-0" for="exampleInputEmail1">
-          Name
-        </label>
-        <input
-          value={enteredText}
-          onChange={registerName}
-          className="form-control mb-2"
-          type="name"
-          name=""
-          placeholder="Enter Name"
-        ></input>
-        <label className="mb-0" for="exampleInputEmail1">
-          {" "}
-          Email
-        </label>
-        <input
-          value={enteredText}
-          onChange={registerEmail}
-          className="form-control mb-2"
-          type="name"
-          name=""
-          placeholder="Enter Email"
-        ></input>
-        <label className="mb-0" for="exampleInputEmail1">
-          {" "}
-          Password
-        </label>
-        <input
-          value={enteredText}
-          onChange={registerPassword}
-          className="form-control mb-2"
-          type="password"
-          name=""
-          placeholder="Enter Password"
-        ></input>
-        <button
-          onClick={registerData}
-          className="btn btn-outline-primary form-control mt-2"
-          type="button"
-        >
-          Register
-        </button>
-        {/* //{errorMessage} */}
-      </form>
+    <div id="login">
+      <div className="container">
+        <h3 className="text-center text-white pt-5">Signup form</h3>
+        <form>
+          <input
+            type="text"
+            name="text"
+            placeholder="Name"
+            onChange={handleNameChange}
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handleEmailChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handlePasswordChange}
+          />
+          <button type="button" onClick={handleSignup}>
+            SignUp
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

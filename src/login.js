@@ -1,78 +1,70 @@
-import { useState } from "react";
+import { Component } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
 
-function Login() {
-  //   var [errorMessage, setErrorMess] = useState();
-  var [enteredText, setEnteredText] = useState();
-  let user = {};
-  let register = {};
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      search: "",
+    };
+  }
 
-  var login = function (e) {
-    console.log("User has entered login page", user.email);
-    if (user.email === undefined && user.password === undefined) {
-      //setErrorMess("login failure");
-      alert("login failure");
-    }
-    //console.log('Ssssssssssssssssssss',user)
+  handleChangeEmail = (event) => {
+    this.setState({ email: event.target.value });
+  };
+
+  handlePasswordChange = (event) => {
+    this.setState({ password: event.target.value });
+  };
+
+  handleSubmitevents = (e) => {
+    console.log(this.state);
     axios
-      .post(`https://apifromashu.herokuapp.com/api/login`, user)
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        localStorage.setItem("Data", res["data"].token);
-        setEnteredText("");
+      .post("https://apifromashu.herokuapp.com/api/login", this.state)
+      .then((response) => {
+        console.log(response);
+        if (response.data.message) {
+          alert(response.data.message);
+        } else {
+          alert("Successfully DOne");
+          localStorage.setItem("token", response.data.token);
+          this.props.history.push("/");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
-  var handleEmail = function (e) {
-    user.email = e.target.value;
-  };
-  var handlePassword = function (e) {
-    user.password = e.target.value;
-  };
-
-  return (
-    <div class="row mb-5">
-      <div class="col-md-8 offset-md-4">
-        <form className="w-50 ">
-          <h1 className="alignCenter">Login Page</h1>
-          <div class="form-group justify-content-start">
-            <label className="mb-0" for="exampleInputEmail1">
-              Email address
-            </label>
-            <input
-              value={enteredText}
-              onChange={handleEmail}
-              className="form-control mb-2"
-              type="email"
-              name=""
-              placeholder="Enter Email"
-            ></input>
-            <label className="mb-0" for="exampleInputEmail1">
-              Password
-            </label>
-            <input
-              value={enteredText}
-              onChange={handlePassword}
-              className="form-control mb-2"
-              type="password"
-              name=""
-              placeholder="Enter Password"
-            ></input>
-
-            <button
-              className="btn btn-outline-primary form-control mt-2"
-              onClick={login}
-              type="button"
-            >
-              Login
-            </button>
-            {/* {errorMessage} */}
-          </div>
-        </form>
+  render() {
+    return (
+      <div>
+        <Navbar logo={"images/logo.png"} fun={this.state.search} />
+        <div className=" TestLoginForm ">
+          <label>Email</label>
+          <input
+            type="text"
+            name="name"
+            value={this.state.email}
+            onChange={this.handleChangeEmail}
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+          />
+          <button type="button" onClick={this.handleSubmitevents}>
+            Login
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Login;

@@ -1,14 +1,11 @@
 import "./App.css";
-import Loader from "react-loader-spinner";
-import Addcake from "./Addcake";
-import Login from "./Login";
-import Signup from "./Signup";
-import Search from "./Search";
+import SearchCake from "./SearchCake";
 import Home from "./Home";
-import Dashboard from "./Dashboard";
-import Cakedetails from "./Cakedetails";
-import { useState, useEffect } from "react";
-
+import Search from "./Search";
+import Login from "./Login";
+import SignUp from "./Signup";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,13 +18,11 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard}></Route>
+          <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
+          <Route path="/signup" exact component={SignUp} />
           <Route path="/search" exact component={Search} />
-          <Route path="/addcake" exact component={Addcake} />
-          <Route path="/cake/:cakeid" exact component={Cakedetails} />
+          <Route path="/cake/:id" exact component={SearchCake} />
           <Route path="**">
             <Redirect to="/"></Redirect>
           </Route>
