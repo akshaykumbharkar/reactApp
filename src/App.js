@@ -1,28 +1,38 @@
 import "./App.css";
 import Loader from "react-loader-spinner";
-import Navbar from "./Navbar";
-import { Carosel } from "./Carousel";
-import Login from "./login";
-import Search from "./search";
+import Addcake from "./Addcake";
+import Login from "./Login";
 import Signup from "./Signup";
-// import Cakedata from "./cakesdata";
-// import { Cards } from "./Cards";
+import Search from "./Search";
+import Home from "./Home";
+import Dashboard from "./Dashboard";
+import Cakedetails from "./Cakedetails";
+import { useState, useEffect } from "react";
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Loader
-        type="ThreeDots"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={3000} //3 secs
-      />
-      <Navbar />
-      <Carosel />
-      <Signup />
-      <Login />
-      <Search />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard}></Route>
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/search" exact component={Search} />
+          <Route path="/addcake" exact component={Addcake} />
+          <Route path="/cake/:cakeid" exact component={Cakedetails} />
+          <Route path="**">
+            <Redirect to="/"></Redirect>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

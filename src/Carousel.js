@@ -2,8 +2,7 @@ const carousel1 = "carousel2.png";
 const carousel2 = "carousel1.png";
 const carousel3 = "carousel2.png";
 
-export function Carosel() {
-  let caroselStyle = { height: "30em" };
+export function Carousel() {
   return (
     <div
       id="carouselExampleControls"
@@ -11,14 +10,37 @@ export function Carosel() {
       data-ride="carousel"
     >
       <div class="carousel-inner">
-        <div style={caroselStyle} class="carousel-item active">
-          <img src={carousel1} class="d-block w-100" alt="..." />
+        <div class="carousel-item active">
+          <img
+            style={{ height: "30em" }}
+            src={carousel1}
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
-        <div style={caroselStyle} class="carousel-item">
-          <img src={carousel2} class="d-block w-100" alt="..." />
+        <div class="carousel-item">
+          <img
+            style={{ height: "30em" }}
+            src={carousel2}
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
-        <div style={caroselStyle} class="carousel-item">
-          <img src={carousel3} class="d-block w-100" alt="..." />
+        <div class="carousel-item">
+          <img
+            style={{ height: "30em" }}
+            src={carousel3}
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            style={{ height: "30em" }}
+            src="https://images.unsplash.com/photo-1469533667357-006056eaf780?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTR8fGNha2V8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
       </div>
       <a
